@@ -1,0 +1,14 @@
+/Users/angkrit/Documents/Sources/fda-api/bin/Release/netcoreapp2.2/FdaApi.deps.json
+/Users/angkrit/Documents/Sources/fda-api/bin/Release/netcoreapp2.2/FdaApi.runtimeconfig.json
+/Users/angkrit/Documents/Sources/fda-api/bin/Release/netcoreapp2.2/FdaApi.runtimeconfig.dev.json
+/Users/angkrit/Documents/Sources/fda-api/bin/Release/netcoreapp2.2/FdaApi.dll
+/Users/angkrit/Documents/Sources/fda-api/bin/Release/netcoreapp2.2/FdaApi.pdb
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.csprojAssemblyReference.cache
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.csproj.CoreCompileInputs.cache
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.RazorAssemblyInfo.cache
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.RazorAssemblyInfo.cs
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.AssemblyInfoInputs.cache
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.AssemblyInfo.cs
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.RazorTargetAssemblyInfo.cache
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.dll
+/Users/angkrit/Documents/Sources/fda-api/obj/Release/netcoreapp2.2/FdaApi.pdb

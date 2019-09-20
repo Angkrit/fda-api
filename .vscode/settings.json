@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "bin/Release/netcoreapp2.2/publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/d43e4ceb-fb49-433d-8ac6-1c7862c1e175/resourceGroups/angkrit-resource-group/providers/Microsoft.Web/sites/fda-api"
+}
