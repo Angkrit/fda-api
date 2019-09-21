@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FdaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,34 +15,61 @@ namespace FdaApi.Controllers
     [ApiController]
     public class SearchController : ControllerBase
     {
+        private static Dictionary<string, FdaData> FdaList = new Dictionary<string, FdaData>();
+
         // GET api/values
         [HttpGet("{code}")]
-        public async Task<ActionResult<object>> GetAsync(string code)
+        public async Task<ActionResult<FdaData>> GetAsync(string code)
         {
             try
             {
+                code = code.Trim();
+                var fda = FdaList.FirstOrDefault(f => f.Key == code);
+                if (fda.Key != null)
+                {
+                    return fda.Value;
+                }
+
                 var client = new HttpClient();
                 var values = new Dictionary<string, string>
                 {
-                { "number_src", code }
-            };
+                    { "number_src", code }
+                };
                 var content = new FormUrlEncodedContent(values);
                 var response = await client.PostAsync("https://oryor.com/oryor2015/ajax-check-product.php", content);
                 var responseString = await response.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<JObject>(responseString);
-                var outputs = data["output"];
+                var outputs = data?["output"];
                 var output = outputs.FirstOrDefault();
-                var status = HtmlToPlainText(output["cncnm"].ToString());
-                return new
+                var status = HtmlToPlainText(output?["cncnm"]?.ToString() ?? "");
+                var name = "ไม่พบข้อมูล";
+                var nameTh = output?["productha"]?.ToString();
+                var nameEn = output?["produceng"]?.ToString();
+                if (!string.IsNullOrWhiteSpace(nameTh))
                 {
-                    no = output["lcnno"].ToString(),
-                    name = output["productha"].ToString(),
-                    status = status
+                    name = nameTh;
+                }
+                else if (!string.IsNullOrWhiteSpace(nameEn))
+                {
+                    name = nameEn;
+                }
+                var fdaData = new FdaData
+                {
+                    No = output?["lcnno"]?.ToString() ?? code,
+                    Name = name,
+                    Status = status
                 };
+                FdaList.Add(code, fdaData);
+                return fdaData;
             }
             catch (Exception e)
             {
-                return new object();
+                return new FdaData
+                {
+                    No = code,
+                    Name = "ไม่พบข้อมูล",
+                    Status = e.ToString()
+                };
             }
         }
 
