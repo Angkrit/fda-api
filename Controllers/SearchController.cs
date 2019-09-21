@@ -23,6 +23,8 @@ namespace FdaApi.Controllers
         {
             try
             {
+                Regex rgx = new Regex("[^a-zA-Z0-9 -/]");
+                code = rgx.Replace(code, "");
                 code = code.Trim();
                 var fda = FdaList.FirstOrDefault(f => f.Key == code);
                 if (fda.Key != null)
@@ -68,22 +70,24 @@ namespace FdaApi.Controllers
                 {
                     No = code,
                     Name = "ไม่พบข้อมูล",
-                    Status = e.ToString()
+                    Status = "-"
                 };
             }
         }
+
+        // // POST api/values
+        [HttpPost]
+        public Task<ActionResult<FdaData>> Post([FromForm] string code)
+        {
+            return GetAsync(code);
+        }
+
 
         // GET api/values/5
         // [HttpGet("{id}")]
         // public ActionResult<string> Get(int id)
         // {
         //     return "value";
-        // }
-
-        // // POST api/values
-        // [HttpPost]
-        // public void Post([FromBody] string value)
-        // {
         // }
 
         // // PUT api/values/5
